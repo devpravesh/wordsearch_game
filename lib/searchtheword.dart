@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:wordsearch_game/helper.dart';
 
@@ -31,7 +33,9 @@ class _SearchwordsState extends State<Searchwords> {
                       height: 40,
                       width: 40,
                       decoration: BoxDecoration(
-                          color: widget.data[index][index] == search.text
+                          color: (search.text
+                                  .split('')
+                                  .contains(widget.data[index][index]))
                               ? Colors.blue
                               : Colors.grey[300],
                           borderRadius: BorderRadius.circular(10)),
@@ -57,9 +61,11 @@ class _SearchwordsState extends State<Searchwords> {
                 ),
               ),
               MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  log(search.text.split('').toString());
+                },
                 color: Colors.blue,
-                child: Text(
+                child: const Text(
                   "Search",
                   style: TextStyle(color: Colors.white),
                 ),
